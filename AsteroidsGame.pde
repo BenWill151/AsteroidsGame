@@ -61,12 +61,12 @@ public void draw()
 }
 public void Inputs(){
   if( wisdown == true ){//acceleratwdawde func    
-    SP.ACCEL(.05);
-    SP2.ACCEL(.05);
+    SP.ACCEL(.065);
+    SP2.ACCEL(.065);
     THA.show();
-    THA.ACCEL(.05);
+    THA.ACCEL(.065);
     THB.show();
-    THB.ACCEL(.05);
+    THB.ACCEL(.065);
     w1 = w1+.001;
     //fill(232,156,80);
     //stroke(245,73,10);
