@@ -9,8 +9,8 @@ class Spaceship extends Floater
      myColor = color(80,80,80);
      myCenterX = 400;
      myCenterY = 400;
-     myXspeed = 1;
-     myYspeed = 1;
+     myXspeed = 0;
+     myYspeed = 0;
      myPointDirection = 0;
    }
    public void HYPE(int P,int MX, int MY){//hyperdrive function
