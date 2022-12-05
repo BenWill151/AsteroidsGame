@@ -12,7 +12,8 @@ boolean disdown = false;
 
 
 //Floater vars
-AS [] A1 = new AS[15];
+ArrayList <AS> A2 = new ArrayList <AS>();
+AS [] A1 =new AS[10];
 
 //Star vars
 Star [] nightSky = new Star[300];
@@ -20,9 +21,13 @@ planet [] planets = new planet[10];
 
 //Game vars
 boolean mouse = false;
+boolean GameOver = false;
+int lives = 5;
+
 public void setup()
 {
-  size(800, 800);
+  size(1000, 1000);
+  textAlign(CENTER);
   for (int i = 0; i<nightSky.length; i++) {
 
     nightSky[i] = new Star();
@@ -31,40 +36,24 @@ public void setup()
 
     planets[i] = new planet();
   }
-  for (int i = 0; i<A1.length; i++) {
-
-    A1[i] = new AS();
-  }
-  for (int i = 0; i<A1.length; i++) {
-    A1[i].myCenterX = (int)(Math.random()*width);
-    A1[i].myCenterY = (int)(Math.random()*height);
-    
+  
+  for(int i = 0; i<10;i++){
+    A2.add(new AS());
+    A2.get(i).myCenterX = (int)(Math.random()*width);
+    A2.get(i).myCenterY = (int)(Math.random()*height);
   }
 }
 public void draw()
 {
   background(0);
+  textSize(15);
+  text("Lives = "+lives,width/2,15);
   for (int i = 0; i<nightSky.length; i++) {
     nightSky[i].show(255, 255, 255);
   }
   for (int i = 0; i<planets.length; i++) {
-
     planets[i].show();
-  }
-  for (int i = 0; i<A1.length; i++) {
-
-    A1[i].show();
-    A1[i].move();    
-    A1[i].rand(200, 300, 300);
-    
-    System.out.println(A1[0].myPointDirection);
-  }
-  
-
-
-
-
-  
+  }  
   SP.show();
   SP.ACCEL(f);
   SP2.show();
@@ -72,25 +61,25 @@ public void draw()
   THA.ACCEL(f);
   THB.ACCEL(f);
   fill(255, 255, 255);
-  text((float)SP.myCenterX+" = myCenterX", 50, 10);
-  text((float)SP.myCenterY+" = myCenterY", 50, 30);
-  text((float)SP.myXspeed+" = myXspeed", 50, 50);
-  text((float)SP.myYspeed+" = myYspeed", 50, 70);
-  text((float)SP.myPointDirection+" = myPointDirection", 50, 90);
+  //textSize(7);
+  //text((float)SP.myCenterX+" = myCenterX", 50, 10);
+  //text((float)SP.myCenterY+" = myCenterY", 50, 30);
+  //text((float)SP.myXspeed+" = myXspeed", 50, 50);
+  //text((float)SP.myYspeed+" = myYspeed", 50, 70);
+  //text((float)SP.myPointDirection+" = myPointDirection", 50, 90);
   ans();
+  ASC();
+  gameOver();
 }
 public void ans() {
   if ( wisdown == true ) {//acceleratwdawde func
-    SP.ACCEL(.065);
-    SP2.ACCEL(.065);
+    SP.ACCEL(.07);
+    SP2.ACCEL(.07);
     THA.show();
-    THA.ACCEL(.065);
+    THA.ACCEL(.07);
     THB.show();
-    THB.ACCEL(.065);
+    THB.ACCEL(.07);
     w1 = w1+.001;
-    //fill(232,156,80);
-    //stroke(245,73,10);
-    //ellipse((float)SP.myCenterX-50,(float)SP.myCenterY,50,50);
   }
   if ( aisdown == true ) {//LEFT func
     SP.LEFT();
@@ -136,3 +125,37 @@ public void keyReleased() {
     disdown = false;
   }
 }
+
+public void ASC(){
+  for(int i =0; i<A2.size();i++){
+    
+    A2.get(i).show();
+    A2.get(i).move();
+    A2.get(i).rand(200, 300, 300);
+    if(dist((float)SP.myCenterX,
+            (float)SP.myCenterY, 
+            (float)A2.get(i).getX(),
+            (float)A2.get(i).getY())<60){
+        A2.remove(i);
+        lives = lives - 1;
+      }
+  }
+}
+public void gameOver(){
+  if(lives <= 0){
+    GameOver = true;
+  }
+  if(GameOver == true){
+    textSize(50);
+    text("GAME OVER",width/2,height/2);
+    noLoop();
+  }
+  
+}
+
+
+
+
+
+
+
