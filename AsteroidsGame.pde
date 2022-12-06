@@ -96,13 +96,13 @@ public void ans() {
 }
 public void keyPressed() {
   if ( key == 'q'|| key == 'Q') {//hyperdrive func
-    int P = (int)(Math.random()*360);
-    int MX = (int)(Math.random()*width);
-    int MY = (int)(Math.random()*height);
-    SP.HYPE(P, MX, MY);
-    SP2.HYPE(P, MX, MY);
-    THA.HYPE(P, MX, MY);
-    THB.HYPE(P, MX, MY);
+    int p = (int)(Math.random()*360);
+    int mx = (int)(Math.random()*width);
+    int my = (int)(Math.random()*height);
+    SP.HYPE(p, mx, my);
+    SP2.HYPE(p, mx, my);
+    THA.HYPE(p, mx, my);
+    THB.HYPE(p, mx, my);
   }
   if (key == 'w'|| key == 'W') {//acceleratwdawde func
     wisdown = true;
