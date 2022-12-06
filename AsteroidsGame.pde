@@ -68,7 +68,7 @@ public void draw()
   //text((float)SP.myYspeed+" = myYspeed", 50, 70);
   //text((float)SP.myPointDirection+" = myPointDirection", 50, 90);
   ans();
-  ASC();
+  asc();
   gameOver();
 }
 public void ans() {
@@ -126,7 +126,7 @@ public void keyReleased() {
   }
 }
 
-public void ASC(){
+public void asc(){
   for(int i =0; i<A2.size();i++){
     
     A2.get(i).show();
