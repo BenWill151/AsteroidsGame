@@ -1,10 +1,9 @@
-class AS extends Floater{
+class as extends Floater{
   protected double rotSpeed;
-  int a;
+  int a = 40;
   float ra,r,x,y;
   int myColorRA;
-  public AS(){    
-    a = 40;
+  public as(){        
     rotSpeed = (Math.random()*20)-10;
     corners = 12;    
     xCorners = new int[corners];
@@ -32,9 +31,7 @@ class AS extends Floater{
     xCorners[10] =a/2 ;
     yCorners[10] = (int)(-1*Math.sqrt(3)*a/2);
     xCorners[11] = (int)((a/2+a)/2)+(int)((Math.random()*30)-10) ;//d
-    yCorners[11] = (int)(((-1*Math.sqrt(3)*a/2)+0)/2)+(int)((Math.random()*30)-10);//d
-    
-    
+    yCorners[11] = (int)(((-1*Math.sqrt(3)*a/2)+0)/2)+(int)((Math.random()*30)-10);//d    
     myColorRA = (int)((Math.random()*120)+105); 
     myColor = color(myColorRA,myColorRA,myColorRA);
     myCenterX = 400;
