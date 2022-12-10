@@ -1,19 +1,19 @@
-//Spaceship vars
-Spaceship SP = new Spaceship();
+//spaceship vars
+Spaceship sp = new Spaceship();
 double f = 0;
 double w1=0;
 double s1 =0;
-innerSP SP2 = new innerSP();
-TH1 THA = new TH1();
-TH2 THB = new TH2();
+innerSP sp2 = new innerSP();
+th1 tha = new th1();
+th2 thb = new th2();
 boolean wisdown = false;
 boolean aisdown = false;
 boolean disdown = false;
 
 
 //Floater vars
-ArrayList <AS> A2 = new ArrayList <AS>();
-AS [] A1 =new AS[10];
+ArrayList <as> a2 = new ArrayList <as>();
+as [] A1 =new as[10];
 
 //Star vars
 Star [] nightSky = new Star[300];
@@ -23,6 +23,7 @@ planet [] planets = new planet[10];
 boolean mouse = false;
 boolean GameOver = false;
 int lives = 5;
+ArrayList <Bullet> bs = new ArrayList <Bullet>();
 
 public void setup()
 {
@@ -38,9 +39,9 @@ public void setup()
   }
   
   for(int i = 0; i<10;i++){
-    A2.add(new AS());
-    A2.get(i).myCenterX = (int)(Math.random()*width);
-    A2.get(i).myCenterY = (int)(Math.random()*height);
+    a2.add(new as());
+    a2.get(i).myCenterX = (int)(Math.random()*width);
+    a2.get(i).myCenterY = (int)(Math.random()*height);
   }
 }
 public void draw()
@@ -54,55 +55,75 @@ public void draw()
   for (int i = 0; i<planets.length; i++) {
     planets[i].show();
   }  
-  SP.show();
-  SP.ACCEL(f);
-  SP2.show();
-  SP2.ACCEL(f);
-  THA.ACCEL(f);
-  THB.ACCEL(f);
+  for(int i = 0; i < bs.size(); i++){
+    bs.get(i).move();
+    bs.get(i).show();
+  }
+  sp.show();
+  sp.ACCEL(f);
+  sp2.show();
+  sp2.ACCEL(f);
+  tha.ACCEL(f);
+  thb.ACCEL(f);
   fill(255, 255, 255);
   //textSize(7);
-  //text((float)SP.myCenterX+" = myCenterX", 50, 10);
-  //text((float)SP.myCenterY+" = myCenterY", 50, 30);
-  //text((float)SP.myXspeed+" = myXspeed", 50, 50);
-  //text((float)SP.myYspeed+" = myYspeed", 50, 70);
-  //text((float)SP.myPointDirection+" = myPointDirection", 50, 90);
+  //text((float)sp.myCenterX+" = myCenterX", 50, 10);
+  //text((float)sp.myCenterY+" = myCenterY", 50, 30);
+  //text((float)sp.myXspeed+" = myXspeed", 50, 50);
+  //text((float)sp.myYspeed+" = myYspeed", 50, 70);
+  //text((float)sp.myPointDirection+" = myPointDirection", 50, 90);
   ans();
   asc();
   gameOver();
 }
 public void ans() {
   if ( wisdown == true ) {//acceleratwdawde func
-    SP.ACCEL(.07);
-    SP2.ACCEL(.07);
-    THA.show();
-    THA.ACCEL(.07);
-    THB.show();
-    THB.ACCEL(.07);
+    sp.ACCEL(.07);
+    sp2.ACCEL(.07);
+    tha.show();
+    tha.ACCEL(.07);
+    thb.show();
+    thb.ACCEL(.07);
     w1 = w1+.001;
   }
   if ( aisdown == true ) {//LEFT func
-    SP.LEFT();
-    SP2.LEFT();
-    THA.LEFT();
-    THB.LEFT();
+    sp.LEFT();
+    sp2.LEFT();
+    tha.LEFT();
+    thb.LEFT();
   }
   if ( disdown == true ) {//RIGHT func
-    SP.RIGHT();
-    SP2.RIGHT();
-    THA.RIGHT();
-    THB.RIGHT();
+    sp.RIGHT();
+    sp2.RIGHT();
+    tha.RIGHT();
+    thb.RIGHT();
   }
 }
 public void keyPressed() {
+  if(key == ' '){
+    bs.add(new Bullet(sp));
+  }
+  if (key == 'r' || key == 'R'){
+    loop();
+    GameOver = false;
+    lives = 5;
+    for(int i = 0; i<10;i++){
+      a2.add(new as());
+      a2.get(i).myCenterX = (int)(Math.random()*width);
+      a2.get(i).myCenterY = (int)(Math.random()*height);
+    }
+  }
+  if(key == 'h'){
+    lives = lives + 999;
+  }
   if ( key == 'q'|| key == 'Q') {//hyperdrive func
-    int p = (int)(Math.random()*360);
-    int mx = (int)(Math.random()*width);
-    int my = (int)(Math.random()*height);
-    SP.HYPE(p, mx, my);
-    SP2.HYPE(p, mx, my);
-    THA.HYPE(p, mx, my);
-    THB.HYPE(p, mx, my);
+    int P = (int)(Math.random()*360);
+    int MX = (int)(Math.random()*width);
+    int MY = (int)(Math.random()*height);
+    sp.HYPE(P, MX, MY);
+    sp2.HYPE(P, MX, MY);
+    tha.HYPE(P, MX, MY);
+    thb.HYPE(P, MX, MY);
   }
   if (key == 'w'|| key == 'W') {//acceleratwdawde func
     wisdown = true;
@@ -127,19 +148,28 @@ public void keyReleased() {
 }
 
 public void asc(){
-  for(int i =0; i<A2.size();i++){
+  for(int i =0; i<a2.size();i++){
     
-    A2.get(i).show();
-    A2.get(i).move();
-    A2.get(i).rand(200, 300, 300);
-    if(dist((float)SP.myCenterX,
-            (float)SP.myCenterY, 
-            (float)A2.get(i).getX(),
-            (float)A2.get(i).getY())<60){
-        A2.remove(i);
+    a2.get(i).show();
+    a2.get(i).move();
+    a2.get(i).rand(200, 300, 300);
+    if(dist((float)sp.myCenterX,
+            (float)sp.myCenterY, 
+            (float)a2.get(i).getX(),
+            (float)a2.get(i).getY())<60){
+        a2.remove(i);
         lives = lives - 1;
       }
   }
+  //for(int i = 0; i<bs.size();i++){
+   // if(dist((float)bs.get(i).getX(),
+   //         (float)bs.get(i).getY(), 
+   //         (float)a2.get(i).getX(),
+   //         (float)a2.get(i).getY())<40){
+   //    a2.remove(i);
+   //    lives = lives - 1;
+   //  }
+   //}
 }
 public void gameOver(){
   if(lives <= 0){
@@ -152,10 +182,3 @@ public void gameOver(){
   }
   
 }
-
-
-
-
-
-
-
