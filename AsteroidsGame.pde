@@ -13,7 +13,7 @@ boolean disdown = false;
 
 //Floater vars
 ArrayList <as> a2 = new ArrayList <as>();
-as [] A1 =new as[10];
+as [] a1 =new as[10];
 
 //Star vars
 Star [] nightSky = new Star[300];
