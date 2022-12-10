@@ -1,8 +1,8 @@
 class Bullet extends Floater{
-  public Bullet (Spaceship SP){
-    myCenterX = SP.getX();
-    myCenterY = SP.getY();
-    myPointDirection = SP.getP();
+  public Bullet (Spaceship sp){
+    myCenterX = sp.getX();
+    myCenterY = sp.getY();
+    myPointDirection = sp.getP();
     accelerate(5);
   }
   public void show(){
