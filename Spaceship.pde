@@ -21,15 +21,18 @@ class Spaceship extends Floater
     myYspeed = 0;
    }
    public void ACCEL(double s){//accelerate function
-     SP.move();
-     SP.accelerate(s);
+     sp.move();
+     sp.accelerate(s);
    }
    public void LEFT(){//LEFT function
-     SP.turn(-turnspeed);     
+     sp.turn(-turnspeed);     
    }
    public void RIGHT(){//RIGHT function
-     SP.turn(turnspeed);
+     sp.turn(turnspeed);
    }
+   public double getX(){return myCenterX;}
+   public double getY(){return myCenterY;}
+   public double getP(){return myPointDirection;}
 }
 
 class innerSP extends Spaceship
@@ -40,49 +43,49 @@ class innerSP extends Spaceship
      myColor = color(4,255,255);
    }
    public void ACCEL(double s){//accelerate function
-     SP2.move();
-     SP2.accelerate(s);
+     sp2.move();
+     sp2.accelerate(s);
    }
    public void LEFT(){//LEFT function
-     SP2.turn(-turnspeed);     
+     sp2.turn(-turnspeed);     
    }
    public void RIGHT(){//RIGHT function
-     SP2.turn(turnspeed);
+     sp2.turn(turnspeed);
    }
 }
-class TH1 extends Spaceship
+class th1 extends Spaceship
 { 
-   TH1(){     
+   th1(){     
      xCorners = new int[]{-43,-58,-43,-50,-43,-45,-36,-36,-45,-43,-50,-43,-43};
      yCorners = new int[]{-19,-17,-16,-13,-13,-10,-15,-20,-25,-22,-23,-19,-19};
      myColor = color(232,156,80);  
    }
    public void ACCEL(double s){//accelerate function
-     THA.move();
-     THA.accelerate(s);
+     tha.move();
+     tha.accelerate(s);
    }
    public void LEFT(){//LEFT function
-     THA.turn(-turnspeed);     
+     tha.turn(-turnspeed);     
    }
    public void RIGHT(){//RIGHT function
-     THA.turn(turnspeed);
+     tha.turn(turnspeed);
    }
 }
-class TH2 extends Spaceship
+class th2 extends Spaceship
 {  
-   TH2(){     
+   th2(){     
      xCorners = new int[]{-43,-58,-43,-50,-43,-45,-36,-36,-45,-43,-50,-43,-43,-43 };
      yCorners = new int[]{16,17,19,22,21,25,20,15,10,13,12,16,16, };
      myColor = color(232,156,80);     
    }
    public void ACCEL(double s){//accelerate function
-     THB.move();
-     THB.accelerate(s);
+     thb.move();
+     thb.accelerate(s);
    }
    public void LEFT(){//LEFT function
-     THB.turn(-turnspeed);     
+     thb.turn(-turnspeed);     
    }
    public void RIGHT(){//RIGHT function
-     THB.turn(turnspeed);
+     thb.turn(turnspeed);
    }
 }
