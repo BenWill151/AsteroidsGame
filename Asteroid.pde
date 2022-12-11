@@ -1,11 +1,11 @@
-class as extends Floater{
+class as extends Floater {
   protected double rotSpeed;
   int a = 40;
-  float ra,r,x,y;
+  float ra, r, x, y;
   int myColorRA;
-  public as(){        
+  public as() {
     rotSpeed = (Math.random()*20)-10;
-    corners = 12;    
+    corners = 12;
     xCorners = new int[corners];
     yCorners = new int[corners];
     xCorners[0] = a;
@@ -31,31 +31,29 @@ class as extends Floater{
     xCorners[10] =a/2 ;
     yCorners[10] = (int)(-1*Math.sqrt(3)*a/2);
     xCorners[11] = (int)((a/2+a)/2)+(int)((Math.random()*30)-10) ;//d
-    yCorners[11] = (int)(((-1*Math.sqrt(3)*a/2)+0)/2)+(int)((Math.random()*30)-10);//d    
-    myColorRA = (int)((Math.random()*120)+105); 
-    myColor = color(myColorRA,myColorRA,myColorRA);
-    myCenterX = 400;
-    myCenterY = 400;
+    yCorners[11] = (int)(((-1*Math.sqrt(3)*a/2)+0)/2)+(int)((Math.random()*30)-10);//d
+    myColorRA = (int)((Math.random()*120)+105);
+    myColor = color(myColorRA, myColorRA, myColorRA);
+    myCenterX = (int)((Math.random()*width));
+    myCenterY = (int)((Math.random()*height));
     myXspeed = (int)((Math.random()*10)-5);
     myYspeed = (int)((Math.random()*10)-5);
     myPointDirection = 0;
   }
-  void rand(float radius ,float Xcenter,float Ycenter){
-   r = random(radius);
-   ra = random(TWO_PI);
-   x = Xcenter+cos(ra)*r;
-   y = Ycenter+sin(ra)*r; 
+  void rand(float radius, float Xcenter, float Ycenter) {
+    r = random(radius);
+    ra = random(TWO_PI);
+    x = Xcenter+cos(ra)*r;
+    y = Ycenter+sin(ra)*r;
   }
-  void move(){
+  void move() {
     turn(rotSpeed);
     super.move();
-
   }
-  public double getX(){
+  public double getX() {
     return myCenterX;
   }
-  public double getY(){
+  public double getY() {
     return myCenterY;
   }
-  
 }
