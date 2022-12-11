@@ -3,7 +3,7 @@ class Bullet extends Floater{
     myCenterX = sp.getX();
     myCenterY = sp.getY();
     myPointDirection = sp.getP();
-    accelerate(5);
+    accelerate(20);
   }
   public void show(){
     noStroke();
