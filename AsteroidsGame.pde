@@ -22,7 +22,7 @@ planet [] planets = new planet[10];
 //Game vars
 boolean mouse = false;
 boolean GameOver = false;
-int lives = 5;
+double lives = 5;
 int points = 0;
 ArrayList <Bullet> bs = new ArrayList <Bullet>();
 
@@ -49,7 +49,7 @@ public void draw()
 {
   background(0);
   textSize(15);
-  text("Lives = "+lives, width/2, 15);
+  text("Lives = "+(int)lives, width/2, 15);
   text("Points = "+points, width/2+100, 15);
   for (int i = 0; i<nightSky.length; i++) {
     nightSky[i].show(255, 255, 255);
@@ -158,7 +158,7 @@ public void asc() {
       (float)a2.get(i).getX(),
       (float)a2.get(i).getY())<60) {
       a2.remove(i);
-      lives = lives - 1;
+      lives = lives - 1.0;
       a2.add(new as());
     }
   }
@@ -169,7 +169,7 @@ public void asc() {
         a2.remove(j);
         points = points +1;
         a2.add(new as());
-        lives = lives +1;
+        lives = lives + .1;
         break;
       }
     }
