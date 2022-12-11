@@ -27,7 +27,7 @@ ArrayList <Bullet> bs = new ArrayList <Bullet>();
 
 public void setup()
 {
-  size(1000, 1000);
+  size(800, 800);
   textAlign(CENTER);
   for (int i = 0; i<nightSky.length; i++) {
 
@@ -160,16 +160,16 @@ public void asc(){
         a2.remove(i);
         lives = lives - 1;
       }
+    
+    
   }
-  //for(int i = 0; i<bs.size();i++){
-   // if(dist((float)bs.get(i).getX(),
-   //         (float)bs.get(i).getY(), 
-   //         (float)a2.get(i).getX(),
-   //         (float)a2.get(i).getY())<40){
-   //    a2.remove(i);
-   //    lives = lives - 1;
-   //  }
-   //}
+ //for(int t = 0; t<a2.size(); t++){
+  // if(dist((float)bs.get(t).getX(), (float)bs.get(t).getY(), (float)a2.get(t).getX(), (float)a2.get(t).getY())<40){
+  //    a2.remove(0);
+   //   break;
+    //} 
+// }
+  
 }
 public void gameOver(){
   if(lives <= 0){
