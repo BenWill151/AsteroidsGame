@@ -23,11 +23,12 @@ planet [] planets = new planet[10];
 boolean mouse = false;
 boolean GameOver = false;
 int lives = 5;
+int points = 0;
 ArrayList <Bullet> bs = new ArrayList <Bullet>();
 
 public void setup()
 {
-  size(800, 800);
+  size(1000, 1000);
   textAlign(CENTER);
   for (int i = 0; i<nightSky.length; i++) {
 
@@ -37,8 +38,8 @@ public void setup()
 
     planets[i] = new planet();
   }
-  
-  for(int i = 0; i<10;i++){
+
+  for (int i = 0; i<10; i++) {
     a2.add(new as());
     a2.get(i).myCenterX = (int)(Math.random()*width);
     a2.get(i).myCenterY = (int)(Math.random()*height);
@@ -48,14 +49,15 @@ public void draw()
 {
   background(0);
   textSize(15);
-  text("Lives = "+lives,width/2,15);
+  text("Lives = "+lives, width/2, 15);
+  text("Points = "+points, width/2+100, 15);
   for (int i = 0; i<nightSky.length; i++) {
     nightSky[i].show(255, 255, 255);
   }
   for (int i = 0; i<planets.length; i++) {
     planets[i].show();
-  }  
-  for(int i = 0; i < bs.size(); i++){
+  }
+  for (int i = 0; i < bs.size(); i++) {
     bs.get(i).move();
     bs.get(i).show();
   }
@@ -66,12 +68,6 @@ public void draw()
   tha.ACCEL(f);
   thb.ACCEL(f);
   fill(255, 255, 255);
-  //textSize(7);
-  //text((float)sp.myCenterX+" = myCenterX", 50, 10);
-  //text((float)sp.myCenterY+" = myCenterY", 50, 30);
-  //text((float)sp.myXspeed+" = myXspeed", 50, 50);
-  //text((float)sp.myYspeed+" = myYspeed", 50, 70);
-  //text((float)sp.myPointDirection+" = myPointDirection", 50, 90);
   ans();
   asc();
   gameOver();
@@ -100,20 +96,24 @@ public void ans() {
   }
 }
 public void keyPressed() {
-  if(key == ' '){
+  if (key == ' ') {
     bs.add(new Bullet(sp));
   }
-  if (key == 'r' || key == 'R'){
+  if (key == 'r' || key == 'R') {
     loop();
     GameOver = false;
     lives = 5;
-    for(int i = 0; i<10;i++){
+    
+     bs.clear();
+    
+    
+    for (int i = 0; i<10; i++) {
       a2.add(new as());
       a2.get(i).myCenterX = (int)(Math.random()*width);
       a2.get(i).myCenterY = (int)(Math.random()*height);
     }
   }
-  if(key == 'h'){
+  if (key == 'h') {
     lives = lives + 999;
   }
   if ( key == 'q'|| key == 'Q') {//hyperdrive func
@@ -147,38 +147,41 @@ public void keyReleased() {
   }
 }
 
-public void asc(){
-  for(int i =0; i<a2.size();i++){
-    
+public void asc() {
+  for (int i =0; i<a2.size(); i++) {
+
     a2.get(i).show();
     a2.get(i).move();
     a2.get(i).rand(200, 300, 300);
-    if(dist((float)sp.myCenterX,
-            (float)sp.myCenterY, 
-            (float)a2.get(i).getX(),
-            (float)a2.get(i).getY())<60){
-        a2.remove(i);
-        lives = lives - 1;
-      }
-    
-    
+    if (dist((float)sp.myCenterX,
+      (float)sp.myCenterY,
+      (float)a2.get(i).getX(),
+      (float)a2.get(i).getY())<60) {
+      a2.remove(i);
+      lives = lives - 1;
+      a2.add(new as());
+    }
   }
- //for(int t = 0; t<a2.size(); t++){
-  // if(dist((float)bs.get(t).getX(), (float)bs.get(t).getY(), (float)a2.get(t).getX(), (float)a2.get(t).getY())<40){
-  //    a2.remove(0);
-   //   break;
-    //} 
-// }
-  
+  for (int i = 0; i < bs.size(); i++) {
+    for(int j = 0; j < a2.size(); j++){
+      if(dist((float)bs.get(i).getX(), (float)bs.get(i).getY(), (float)a2.get(j).getX(), (float)a2.get(j).getY()) < 40)  {
+        bs.remove(i);
+        a2.remove(j);
+        points = points +1;
+        a2.add(new as());
+        lives = lives +1;
+        break;
+      }
+    }
+  }
 }
-public void gameOver(){
-  if(lives <= 0){
+public void gameOver() {
+  if (lives <= 0) {
     GameOver = true;
   }
-  if(GameOver == true){
+  if (GameOver == true) {
     textSize(50);
-    text("GAME OVER",width/2,height/2);
+    text("GAME OVER", width/2, height/2);
     noLoop();
   }
-  
 }
