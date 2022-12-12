@@ -1,11 +1,12 @@
 class as extends Floater {
   protected double rotSpeed;
-  int a = 40;
+  int a;
   float ra, r, x, y;
   int myColorRA;
   public as() {
     rotSpeed = (Math.random()*20)-10;
     corners = 12;
+    a = 40;
     xCorners = new int[corners];
     yCorners = new int[corners];
     xCorners[0] = a;
@@ -39,6 +40,7 @@ class as extends Floater {
     myXspeed = (int)((Math.random()*10)-5);
     myYspeed = (int)((Math.random()*10)-5);
     myPointDirection = 0;
+    
   }
   void rand(float radius, float Xcenter, float Ycenter) {
     r = random(radius);
