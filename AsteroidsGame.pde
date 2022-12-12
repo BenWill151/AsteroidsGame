@@ -169,7 +169,7 @@ public void asc() {
         a2.remove(j);
         points = points +1;
         a2.add(new as());
-        lives = lives + .1;
+        lives = lives + 0.1;
         break;
       }
     }
