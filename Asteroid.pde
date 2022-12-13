@@ -42,11 +42,11 @@ class as extends Floater {
     myPointDirection = 0;
     
   }
-  void rand(float radius, float Xcenter, float Ycenter) {
+  void rand(float radius, float centerX, float centerY) {
     r = random(radius);
     ra = random(TWO_PI);
-    x = Xcenter+cos(ra)*r;
-    y = Ycenter+sin(ra)*r;
+    x = centerX+cos(ra)*r;
+    y = centerY+sin(ra)*r;
   }
   void move() {
     turn(rotSpeed);
