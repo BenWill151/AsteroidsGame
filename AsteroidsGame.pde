@@ -117,13 +117,13 @@ public void keyPressed() {
     lives = lives + 999;
   }
   if ( key == 'q'|| key == 'Q') {//hyperdrive func
-    int P = (int)(Math.random()*360);
-    int MX = (int)(Math.random()*width);
-    int MY = (int)(Math.random()*height);
-    sp.HYPE(P, MX, MY);
-    sp2.HYPE(P, MX, MY);
-    tha.HYPE(P, MX, MY);
-    thb.HYPE(P, MX, MY);
+    int p = (int)(Math.random()*360);
+    int mX = (int)(Math.random()*width);
+    int mY = (int)(Math.random()*height);
+    sp.HYPE(p, mX, mY);
+    sp2.HYPE(p, mX, mY);
+    tha.HYPE(p, mX, mY);
+    thb.HYPE(p, mX, mY);
   }
   if (key == 'w'|| key == 'W') {//acceleratwdawde func
     wisdown = true;
